@@ -5,14 +5,14 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.equalTo;
-public class TakeOrderDataTest extends MainData {
+public class TakeOrderDataTest extends BaseTest {
 
     @Test
     @DisplayName("Получение списка заказов пользователя")
     @Description("Проверка ответа на получение списка заказов в авторизованном канале")
     public void getOrderListWithAuthText() {
-        createNewUser(newUser);
-        TokenData accessData = loginRestTest(loginForm).as(TokenData.class);
+        createNewUser(mainData.newUser);
+        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
         OrderJson orderJsonTemplate = ingredientsListGet().as(OrderJson.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         ingredients.setIngredients(0, orderJsonTemplate.getData().get(0).get_id());

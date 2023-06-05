@@ -1,18 +1,17 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.equalTo;
-public class CreateOrderTest extends MainData {
+public class CreateOrderTest extends BaseTest {
 
     @Test
     @DisplayName("Создание заказа в авторизованном канале")
     @Description("Создание заказа в авторизованном канале в системе")
     public void createOrderWithAuthTest() {
-        createNewUser(newUser);
-        TokenData accessData = loginRestTest(loginForm).as(TokenData.class);
+        createNewUser(mainData.newUser);
+        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
         OrderJson orderJsonTemplate = ingredientsListGet().as(OrderJson.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         ingredients.setIngredients(0, orderJsonTemplate.getData().get(0).get_id());
@@ -55,8 +54,8 @@ public class CreateOrderTest extends MainData {
     @DisplayName("С авторизацией и без ингредиентов")
     @Description("Создание заказа с автоиризацией и без ингредиентов")
     public void createOrderWithAuthAndWithoutRegsTest() {
-        createNewUser(newUser);
-        TokenData accessData = loginRestTest(loginForm).as(TokenData.class);
+        createNewUser(mainData.newUser);
+        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         orderCreateToken(ingredients, accessData.getAccessToken())
                 .then()

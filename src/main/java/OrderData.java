@@ -1,4 +1,4 @@
-public class Data {
+public class OrderData {
     private String _id;
     private String name;
     private String type;
