@@ -17,7 +17,7 @@ public class BaseTest {
     }
 
     // Метод авторизации
-    public Response loginRestTest(UserData object) {
+    public Response loginTest(UserData object) {
         Response loginResponse = given()
                 .header("Content-type", "application/json")
                 .body(object)
@@ -96,13 +96,13 @@ public class BaseTest {
     @After
     // Удаление пользака после тестов если он был создан
     public void deleteUser() {
-        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
+        TokenData accessData = loginTest(mainData.loginForm).as(TokenData.class);
         if (accessData.getAccessToken() != null) {
-            given().header("authorization", accessData.getAccessToken()).and().body(mainData.newUser).delete(dataUrl.CHANGE_USER);
+            given().header("authorization", accessData.getAccessToken()).and().body(mainData.userRandom).delete(dataUrl.CHANGE_USER);
         } else {
-            accessData = loginRestTest(mainData.newLoginForm).as(TokenData.class);
+            accessData = loginTest(mainData.newLoginForm).as(TokenData.class);
             if (accessData.getAccessToken() != null) {
-                given().header("authorization", accessData.getAccessToken()).and().body(mainData.userNewData).delete(dataUrl.CHANGE_USER);
+                given().header("authorization", accessData.getAccessToken()).and().body(mainData.newUserRandom).delete(dataUrl.CHANGE_USER);
             }
         }
     }

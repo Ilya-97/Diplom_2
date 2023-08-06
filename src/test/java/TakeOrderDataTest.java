@@ -11,8 +11,8 @@ public class TakeOrderDataTest extends BaseTest {
     @DisplayName("Получение списка заказов пользователя")
     @Description("Проверка ответа на получение списка заказов в авторизованном канале")
     public void getOrderListWithAuthText() {
-        createNewUser(mainData.newUser);
-        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
+        createNewUser(mainData.userRandom);
+        TokenData accessData = loginTest(mainData.loginForm).as(TokenData.class);
         OrderJson orderJsonTemplate = ingredientsListGet().as(OrderJson.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         ingredients.setIngredients(0, orderJsonTemplate.getData().get(0).get_id());

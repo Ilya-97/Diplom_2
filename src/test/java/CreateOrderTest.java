@@ -10,8 +10,8 @@ public class CreateOrderTest extends BaseTest {
     @DisplayName("Создание заказа в авторизованном канале")
     @Description("Создание заказа в авторизованном канале в системе")
     public void createOrderWithAuthTest() {
-        createNewUser(mainData.newUser);
-        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
+        createNewUser(mainData.userRandom);
+        TokenData accessData = loginTest(mainData.loginForm).as(TokenData.class);
         OrderJson orderJsonTemplate = ingredientsListGet().as(OrderJson.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         ingredients.setIngredients(0, orderJsonTemplate.getData().get(0).get_id());
@@ -54,8 +54,8 @@ public class CreateOrderTest extends BaseTest {
     @DisplayName("С авторизацией и без ингредиентов")
     @Description("Создание заказа с автоиризацией и без ингредиентов")
     public void createOrderWithAuthAndWithoutRegsTest() {
-        createNewUser(mainData.newUser);
-        TokenData accessData = loginRestTest(mainData.loginForm).as(TokenData.class);
+        createNewUser(mainData.userRandom);
+        TokenData accessData = loginTest(mainData.loginForm).as(TokenData.class);
         Ingredients ingredients = new Ingredients(new ArrayList<>());
         orderCreateToken(ingredients, accessData.getAccessToken())
                 .then()

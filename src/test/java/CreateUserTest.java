@@ -8,7 +8,7 @@ public class CreateUserTest extends BaseTest {
     @DisplayName("Успешное создание пользователя")
     @Description("Успешное создание пользователя, код ответа 200")
     public void createCourierValidTest() {
-        createNewUser(mainData.newUser)
+        createNewUser(mainData.userRandom)
                 .then()
                 .statusCode(200);
     }
@@ -17,8 +17,8 @@ public class CreateUserTest extends BaseTest {
     @DisplayName("Попытка создания существующего пользователя")
     @Description("Попытка создать пользователя с уже существующими данными")
     public void createCourierDuplicateTest() {
-        createNewUser(mainData.newUser);
-        createNewUser(mainData.newUser)
+        createNewUser(mainData.userRandom);
+        createNewUser(mainData.userRandom)
                 .then()
                 .statusCode(403)
                 .body("message",equalTo("User already exists"));

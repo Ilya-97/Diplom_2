@@ -9,8 +9,8 @@ public class LoginUserTest extends BaseTest {
     @DisplayName("Авторизация")
     @Description("Успешная авторизация пользователя")
     public void loginTestValid() {
-        createNewUser(mainData.newUser);
-        loginRestTest(mainData.loginForm)
+        createNewUser(mainData.userRandom);
+        loginTest(mainData.loginForm)
                 .then()
                 .statusCode(200).body("success",equalTo(true));
     }
@@ -19,10 +19,10 @@ public class LoginUserTest extends BaseTest {
     @DisplayName("Неуспешная авторизация")
     @Description("Прерывание авторизации в случае некорректных данных")
     public void loginTestInvalidLoginData() {
-        createNewUser(mainData.newUser);
-        loginRestTest(mainData.loginFormInvalid)
+        createNewUser(mainData.userRandom);
+        loginTest(mainData.loginFormInvalid)
                 .then()
                 .statusCode(401).body("message",equalTo("email or password are incorrect"));
-        loginRestTest(mainData.loginForm);
+        loginTest(mainData.loginForm);
     }
 }

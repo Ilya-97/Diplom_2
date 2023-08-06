@@ -1,11 +1,11 @@
 public class DataUrl {
-    final String CREATE_USER = "api/auth/register";
-    final String LOGIN_REST = "/api/auth/login";
-    final String CHANGE_USER = "/api/auth/user";
-    final String LOGOUT_USER = "/api/auth/logout";
-    final String INGREDIENTS_LIST_GET = "/api/ingredients";
-    final String ORDERS = "/api/orders";
-    final String BASE_URL = "https://stellarburgers.nomoreparties.site/";
+    final static String CREATE_USER = "api/auth/register";
+    final static String LOGIN_REST = "/api/auth/login";
+    final static String CHANGE_USER = "/api/auth/user";
+    final static String LOGOUT_USER = "/api/auth/logout";
+    final static String INGREDIENTS_LIST_GET = "/api/ingredients";
+    final static String ORDERS = "/api/orders";
+    final static String BASE_URL = "https://stellarburgers.nomoreparties.site/";
 
 
 }
